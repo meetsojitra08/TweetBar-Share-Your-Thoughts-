@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+TweetBar - Share Your Thoughts
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 bg-gradient">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h1 class="fw-bold display-2 text-primary mb-4">
+                Welcome to Chai's
+            </h1>
+            <p class="fs-4 text-muted mb-5">
+                Bringing technology & creativity together for an amazing experience.
+            </p>
+            <a href="{% url 'tweet_list' %}" class="btn btn-primary btn-lg px-5 py-3 shadow-lg rounded-pill">Explore Tweets</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

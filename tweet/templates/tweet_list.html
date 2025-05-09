@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+TweetBar - Share Your Thoughts
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4 text-primary">Welcome to the Tweeting Experience</h1>
+
+    <div class="text-center mb-4">
+        <a class="btn btn-outline-primary rounded-pill px-4 py-2" href="{% url 'tweet_create' %}">
+            Create a Tweet
+        </a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if tweets %}
+            {% for tweet in tweets %}
+            <div class="col">
+                <div class="card border-0 shadow-lg rounded-4">
+                    {% if tweet.photo %}
+                    <img src="{{ tweet.photo.url }}" class="card-img-top rounded-top-3" alt="Tweet Image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tweet.user.username }}</h5>
+                        <p class="card-text">{{ tweet.text }}</p>
+                    </div>
+                    {% if tweet.user == user %}
+                    <div class="card-footer bg-transparent border-0 d-flex justify-content-between">
+                        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <p class="text-center text-muted">No tweets found matching your search criteria.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

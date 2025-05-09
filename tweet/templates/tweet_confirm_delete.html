@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+TweetBar - Welcome to the Tweeting Experience
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-5 text-center">
+                    <h1 class="text-danger mb-4">"Oops! Are you sure you want to delete your tweet?"</h1>
+                    <p class="mb-4 text-muted">"This action is irreversible. Please confirm your decision to permanently remove this tweet."</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="d-flex justify-content-center gap-3">
+                            <button class="btn btn-danger btn-lg px-4 py-2 rounded-pill shadow-lg" type="submit">Delete</button>
+                            <a class="btn btn-success btn-lg px-4 py-2 rounded-pill shadow-lg" href="{% url 'tweet_list' %}">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
